@@ -1,0 +1,15 @@
+@import 'Palette.scss';
+
+.msg{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    color: $sage-grove-a50;
+    .msg__info{
+         margin-left: 10px;
+        .msg__timestamp{
+            margin-left: 20px;
+            font-size: x-small;
+        }
+    }
+}

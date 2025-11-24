@@ -1,9 +1,42 @@
-@import 'Palette.scss';
-.chat{
-    display: flex;
-    flex-direction: column;
-    flex: 0.8;
-    background-color: $sage-grove-a40;
-    height: 100vh;
+@import "Palette.scss";
+.chat {
+  display: flex;
+  flex-direction: column;
+  flex: 0.8;
+  background-color: $sage-grove-a40;
+  height: 100vh;
 }
 
+.chat__input {
+  display: flex;
+  align-items: center;
+  color: $sage-grove-a50;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 20px;
+  background-color: $sage-grove-a60;
+  & form {
+    flex: 1;
+  }
+  input {
+    padding: 15px;
+    background: transparent;
+    border: none;
+    outline-width: 0;
+    font-size: large;
+    width: 100%;
+  }
+  button{
+    display: none;
+  }
+}
+
+.chat__inputIcons > .MuiSvgIcon-root{
+    padding: 5px;
+    
+}
+
+.chat__msgs{
+    flex: 1;
+}
