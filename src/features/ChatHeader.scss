@@ -1,8 +1,11 @@
+@import 'Palette.scss';
+
 .ChatHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  color: $sage-grove-a20;
   .chatHeader__hash {
     font-size: 30px;
     padding: 10px;
@@ -21,7 +24,7 @@
       cursor: pointer;
     }
     & :hover {
-      color: aqua;
+      color: $sage-grove-a50;
     }
   }
 }

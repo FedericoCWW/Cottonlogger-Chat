@@ -1,8 +1,9 @@
+@import 'Palette.scss';
 .chat{
     display: flex;
     flex-direction: column;
     flex: 0.8;
-    background-color: blue;
+    background-color: $sage-grove-a40;
     height: 100vh;
 }
 
