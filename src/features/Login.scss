@@ -8,7 +8,7 @@
   height: 100vh;
   width: 100%;
   background-color: $sage-grove-a20;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 
   .login {
     width: 100%;
@@ -19,7 +19,7 @@
     box-shadow: 8px 8px 0px $sage-grove-a40;
     position: relative;
     border-radius: 12px;
-    
+
     &::before {
       content: "";
       position: absolute;
@@ -56,8 +56,7 @@ label {
 }
 
 input {
-  width: 100%;
-  max-width: 370px; // Add this constraint
+  width: 92%;
   padding: 12px 15px;
   border: 2px solid $sage-grove-a40;
   background-color: $sage-grove-a30;
@@ -65,7 +64,7 @@ input {
   outline: none;
   transition: all 0.3s;
   border-radius: 4px;
-  
+
   &:focus {
     box-shadow: 4px 4px 0px $sage-grove-a40;
   }
@@ -83,7 +82,7 @@ button {
   margin-top: 10px;
   transition: all 0.3s;
   border-radius: 4px;
-  
+
   &:hover {
     box-shadow: 4px 4px 0px $sage-grove-a40;
     transform: translate(-2px, -2px);
@@ -97,7 +96,7 @@ button {
   color: $sage-grove-a40;
   font-weight: bold;
   font-size: 14px;
-  
+
   &::before,
   &::after {
     content: "";
@@ -128,7 +127,7 @@ button {
   color: $sage-grove-a40;
   background-color: $sage-grove-a30;
   font-size: 16px;
-  
+
   &:hover {
     box-shadow: 4px 4px 0px $sage-grove-a40;
     transform: translate(-2px, -2px);
@@ -140,12 +139,12 @@ button {
   margin-top: 20px;
   color: $sage-grove-a40;
   font-size: 14px;
-  
+
   a {
     color: $sage-grove-a40;
     font-weight: bold;
     text-decoration: underline;
-    
+
     &:hover {
       text-decoration: none;
     }
