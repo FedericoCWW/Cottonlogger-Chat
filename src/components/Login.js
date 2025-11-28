@@ -1,14 +1,18 @@
 import React from "react";
 import "../features/Login.scss";
+import { auth, provider } from "../firebase.js";
+import { signInWithPopup } from "firebase/auth";
+import { Button } from "@base-ui-components/react/button";
 
 function Login() {
   const signIn = (e) => {
     //google login...
-
+    signInWithPopup(auth, provider).catch((error) => alert(error.message));
   };
 
   return (
-    <div className="login">
+    <div className="login-container">
+      <div className="login">
         <h1>CottonLogger</h1>
         <div class="input-group">
           <label for="email">EMAIL</label>
@@ -20,8 +24,7 @@ function Login() {
           <input type="password" id="password" placeholder="••••••••"></input>
         </div>
 
-        <button type="submit">SIGN IN</button>
-
+        <Button onClick={signIn}>SIGN IN</Button>
         <div class="divider">OR</div>
 
         <div class="social-login">
@@ -33,6 +36,7 @@ function Login() {
         <div class="footer">
           Don't have an account? <a href="#">Sign up</a>
         </div>
+      </div>
     </div>
   );
 }

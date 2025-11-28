@@ -1,44 +1,38 @@
 @import "Palette";
 
-* {
+.login-container {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Courier New", monospace;
-}
-
-body {
-  background-color: $sage-grove-a30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
   width: 100%;
-  max-width: 400px;
-  border: 1px solid $sage-grove-a40;
-  padding: 40px 30px;
-  background-color: $sage-grove-a30;
-  box-shadow: 8px 8px 0px $sage-grove-a40;
-  position: relative;
-  border-radius: 12px;
-  
-  &::before {
-    content: "";
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    right: -6px;
-    bottom: -6px;
+  background-color: $sage-grove-a20;
+  font-family: 'Courier New', monospace;
+
+  .login {
+    width: 100%;
+    max-width: 400px;
     border: 1px solid $sage-grove-a40;
-    z-index: -1;
+    padding: 40px 30px;
+    background-color: $sage-grove-a30;
+    box-shadow: 8px 8px 0px $sage-grove-a40;
+    position: relative;
     border-radius: 12px;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: -6px;
+      bottom: -6px;
+      border: 1px solid $sage-grove-a40;
+      z-index: -1;
+      border-radius: 12px;
+    }
   }
 }
-
 h1 {
   color: $sage-grove-a40;
   margin-bottom: 30px;
@@ -57,16 +51,20 @@ label {
   margin-bottom: 8px;
   font-weight: bold;
   color: $sage-grove-a40;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 input {
   width: 100%;
+  max-width: 370px; // Add this constraint
   padding: 12px 15px;
   border: 2px solid $sage-grove-a40;
   background-color: $sage-grove-a30;
   font-size: 16px;
   outline: none;
   transition: all 0.3s;
+  border-radius: 4px;
   
   &:focus {
     box-shadow: 4px 4px 0px $sage-grove-a40;
@@ -84,6 +82,7 @@ button {
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s;
+  border-radius: 4px;
   
   &:hover {
     box-shadow: 4px 4px 0px $sage-grove-a40;
@@ -97,6 +96,7 @@ button {
   margin: 25px 0;
   color: $sage-grove-a40;
   font-weight: bold;
+  font-size: 14px;
   
   &::before,
   &::after {
@@ -111,6 +111,7 @@ button {
   display: flex;
   justify-content: center;
   gap: 15px;
+  margin-bottom: 20px;
 }
 
 .social-btn {
@@ -122,6 +123,11 @@ button {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s;
+  border-radius: 4px;
+  font-weight: bold;
+  color: $sage-grove-a40;
+  background-color: $sage-grove-a30;
+  font-size: 16px;
   
   &:hover {
     box-shadow: 4px 4px 0px $sage-grove-a40;
@@ -133,10 +139,15 @@ button {
   text-align: center;
   margin-top: 20px;
   color: $sage-grove-a40;
+  font-size: 14px;
   
   a {
     color: $sage-grove-a40;
     font-weight: bold;
     text-decoration: underline;
+    
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
