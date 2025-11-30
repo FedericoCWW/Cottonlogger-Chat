@@ -1,0 +1,81 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 0.2;
+  height: 100vh;
+  background-color: oklab(39.9% -0.043 -0.003);
+  color: oklab(90.1% 0.005 0.027);
+}
+
+.sidebar__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 3px solid oklab(59% -0.064 0.031);
+}
+
+.sidebar__channels {
+  flex: 1;
+}
+
+.sidebar__addChannel {
+  cursor: pointer;
+}
+
+.sidebar__channels__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: oklab(78.7% -0.054 0.061);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__voice, .sidebar__profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid oklab(59% -0.064 0.031);
+  background-color: oklab(39.9% -0.043 -0.003);
+  color: oklab(90.1% 0.005 0.027);
+}
+
+.sidebar__voiceInfo {
+  flex: 1;
+  padding: 10px;
+}
+
+.sidebar__voiceInfo > h3 {
+  color: oklab(78.7% -0.054 0.061);
+}
+
+.sidebar__voiceicon {
+  color: oklab(78.7% -0.054 0.061);
+}
+
+.sidebar__voiceIcons ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+.sidebar__voiceIcons li {
+  display: inline-block;
+  padding: 8px;
+}
+
+.sidebar__profile__info {
+  flex: 1;
+  padding: 10px;
+}
+
+.sidebar__profile__icons ul li {
+  list-style: none;
+}/*# sourceMappingURL=Sidebar.css.map */

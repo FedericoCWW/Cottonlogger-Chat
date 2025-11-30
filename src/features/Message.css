@@ -1,0 +1,13 @@
+.msg {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: oklab(90.5% -0.04 0.013);
+}
+.msg .msg__info {
+  margin-left: 10px;
+}
+.msg .msg__info .msg__timestamp {
+  margin-left: 20px;
+  font-size: x-small;
+}/*# sourceMappingURL=Message.css.map */

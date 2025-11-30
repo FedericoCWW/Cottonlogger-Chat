@@ -1,5 +1,6 @@
 import React from 'react'
 import '../features/SidebarChannel.scss'
+import db from "../firebase.js";
 
 function SidebarChannel({id, channel}) {
   return (
