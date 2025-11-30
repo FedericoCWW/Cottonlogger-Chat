@@ -9,8 +9,18 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice.js";
+import {auth} from '../firebase.js';
+import { useEffect, useState } from "react";
 
 function Sidebar() {
+  const user = useSelector(selectUser);
+  const [channels, Setchannels] = useState([]);
+
+  useEffect
+
+  console.log(user);
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -54,10 +64,10 @@ function Sidebar() {
           </div>
       </div>
       <div className="sidebar__profile">
-          <Avatar/>
+          <Avatar onClick={() => auth.signOut()}  src={user.photo}/>
           <div className="sidebar__profile__info">
-            <h3>Avatar Nombre</h3>
-            <p>#Avatar_tag_ID</p>
+            <h3>{user.displayName}</h3>
+            <p>{'#'+user.uid.substring(0,8).toUpperCase()}</p>
           </div>
           <div className="sidebar__profile__icons">
             <ul>

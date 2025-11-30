@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchCount } from "./userAPI";
 
-const initialState = {
-  value: 0,
-  status: "idle",
-};
-
 export const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -13,7 +8,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.user += action.payload;
+      state.user = action.payload;      //es = no +=.
     },
     logout: (state) => {
       state.user = null;
