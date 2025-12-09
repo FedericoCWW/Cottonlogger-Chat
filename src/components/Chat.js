@@ -12,13 +12,15 @@ import { selectChannelID, selectChannelName } from "../features/appSlice.js";
 import { selectUser } from "../features/userSlice.js";
 
 function Chat() {
+  const fullState = useSelector((state) => state);
+  console.log("Full Redux State:", fullState);
+
   const channelId = useSelector(selectChannelID);
   const channelName = useSelector(selectChannelName);
   const user = useSelector(selectUser);
 
-  console.log("Redux State - Channel ID:", channelId);
-  console.log("Redux State - Channel Name:", channelName);
-  console.log("Redux State - User:", user);
+  console.log("Channel ID:", channelId);
+  console.log("Channel Name:", channelName);
   return (
     <div className="chat">
       <ChatHeader channelName={channelName} />
