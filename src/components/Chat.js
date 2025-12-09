@@ -15,9 +15,9 @@ function Chat() {
   const fullState = useSelector((state) => state);
   console.log("Full Redux State:", fullState);
 
-  const channelId = useSelector(selectChannelID);
-  const channelName = useSelector(selectChannelName);
-  const user = useSelector(selectUser);
+  const channelId = useSelector((state) => state.app?.channelId);
+  const channelName = useSelector((state) => state.app?.channelName);
+  const user = useSelector((state) => state.app?.user);
 
   console.log("Channel ID:", channelId);
   console.log("Channel Name:", channelName);
