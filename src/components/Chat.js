@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../features/Chat.scss";
 import ChatHeader from "./ChatHeader.js";
 import Message from "./Message.js";
@@ -10,6 +10,7 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useSelector } from "react-redux";
 import { selectChannelID, selectChannelName } from "../features/appSlice.js";
 import { selectUser } from "../features/userSlice.js";
+import db from "../firebase.js";
 
 function Chat() {
   const fullState = useSelector((state) => state);
@@ -18,6 +19,20 @@ function Chat() {
   const channelId = useSelector((state) => state.app?.channelId);
   const channelName = useSelector((state) => state.app?.channelName);
   const user = useSelector((state) => state.app?.user);
+  const [input, setInput] = useState("");
+  const [msgs, SetMsgs] = useState([]);
+
+  useEffect(() => {
+    if (channelId) {
+      db.collection("channels")
+        .doc(channelId)
+        .collection("message")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) =>
+          SetMsgs(snapshot.docs.map((doc) => doc.data()))
+        );
+    }
+  }, []);
 
   console.log("Channel ID:", channelId);
   console.log("Channel Name:", channelName);
@@ -25,9 +40,9 @@ function Chat() {
     <div className="chat">
       <ChatHeader channelName={channelName} />
       <div className="chat__msgs">
-        <Message />
-        <Message />
-        <Message />
+        {msgs.map((msg) => (
+          <Message />
+        ))}
       </div>
       <div className="chat__input">
         <AddCircleIcon fontSize="large" />
@@ -36,8 +51,13 @@ function Chat() {
             slotProps={{ input: { className: "chat__inputComp" } }}
             aria-label="Demo input"
             placeholder="Tipea algo..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            disabled={!channelName}
           />
-          <Button className="chat__submitBtn">Submit</Button>
+          <Button className="chat__submitBtn" disabled={!channelName}>
+            Submit
+          </Button>
         </form>
         <div className="chat__inputIcons">
           <GifBoxIcon fontSize="large" />
