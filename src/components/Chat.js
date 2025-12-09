@@ -34,6 +34,10 @@ function Chat() {
     }
   }, []);
 
+  const sendMsgs = e => {
+    e.preventDefault();
+  }
+
   console.log("Channel ID:", channelId);
   console.log("Channel Name:", channelName);
   return (
@@ -55,7 +59,7 @@ function Chat() {
             onChange={(e) => setInput(e.target.value)}
             disabled={!channelName}
           />
-          <Button className="chat__submitBtn" disabled={!channelName}>
+          <Button className="chat__submitBtn" disabled={!channelName} onClick={sendMsgs}>
             Submit
           </Button>
         </form>
