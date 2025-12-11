@@ -37,9 +37,6 @@ function Chat() {
   const sendMsgs = e => {
     e.preventDefault();
   }
-
-  console.log("Channel ID:", channelId);
-  console.log("Channel Name:", channelName);
   return (
     <div className="chat">
       <ChatHeader channelName={channelName} />
