@@ -38,7 +38,7 @@ function Chat() {
 
   const sendMsgs = (e) => {
     e.preventDefault();
-    db.collection("channels").doc(channelId).collection("message").add(
+    db.collection("channels").doc(channelId).collection("messages").add(
       {
         message: input,
         user: user,
@@ -46,7 +46,7 @@ function Chat() {
       },
       [channelId]
     );
-    setInput;
+    setInput("");
   };
   return (
     <div className="chat">
@@ -54,9 +54,9 @@ function Chat() {
       <div className="chat__msgs">
         {msgs.map((msg) => (
           <Message 
-          message={message.message}
-          user={message.user}
-          timestamp={message.timestamp} />
+          message={msg.message}
+          user={msg.user}
+          timestamp={msg.timestamp} />
         ))}
       </div>
       <div onSubmit={sendMsgs} className="chat__input">

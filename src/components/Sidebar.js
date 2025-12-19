@@ -39,10 +39,10 @@ function Sidebar() {
 
     if (channelName) {
       try {
-        // Modern syntax
         addDoc(collection(db, "channels"), {
           channelName: channelName,
           timestamp: serverTimestamp(),
+          messages: ""
         });
       } catch (error) {
         console.error("Error adding channel: ", error);
