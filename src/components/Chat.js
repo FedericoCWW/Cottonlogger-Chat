@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { selectChannelID, selectChannelName } from "../features/appSlice.js";
 import { selectUser } from "../features/userSlice.js";
 import db from "../firebase.js";
+import { Timestamp } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 
 function Chat() {
   const fullState = useSelector((state) => state);
@@ -34,18 +36,30 @@ function Chat() {
     }
   }, []);
 
-  const sendMsgs = e => {
+  const sendMsgs = (e) => {
     e.preventDefault();
-  }
+    db.collection("channels").doc(channelId).collection("message").add(
+      {
+        message: input,
+        user: user,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      [channelId]
+    );
+    setInput;
+  };
   return (
     <div className="chat">
       <ChatHeader channelName={channelName} />
       <div className="chat__msgs">
         {msgs.map((msg) => (
-          <Message />
+          <Message 
+          message={message.message}
+          user={message.user}
+          timestamp={message.timestamp} />
         ))}
       </div>
-      <div className="chat__input">
+      <div onSubmit={sendMsgs} className="chat__input">
         <AddCircleIcon fontSize="large" />
         <form action="">
           <Input
@@ -56,7 +70,7 @@ function Chat() {
             onChange={(e) => setInput(e.target.value)}
             disabled={!channelName}
           />
-          <Button className="chat__submitBtn" disabled={!channelName} onClick={sendMsgs}>
+          <Button className="chat__submitBtn" disabled={!channelName}>
             Submit
           </Button>
         </form>
