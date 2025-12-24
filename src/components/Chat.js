@@ -23,7 +23,6 @@ import {
 
 function Chat() {
   const fullState = useSelector((state) => state);
-  console.log("Full Redux State:", fullState);
 
   const channelId = useSelector((state) => state.app?.channelId);
   const channelName = useSelector((state) => state.app?.channelName);
@@ -36,22 +35,16 @@ function Chat() {
       SetMsgs([]);
       return;
     }
-    console.log("Setting up messages listener for channel:", channelId);
     try {
       const messagesRef = collection(db, "channels", channelId, "messages");
       const q = query(messagesRef, orderBy("timestamp", "desc"));
       const unsubscribe = onSnapshot(
         q,
         (snapshot) => {
-          console.log(
-            "Messages snapshot received, count:",
-            snapshot.docs.length
-          );
           const messages = snapshot.docs.map((doc) => ({
             id: doc.id, // Include document ID for React keys
             ...doc.data(),
           }));
-          console.log("Processed messages:", messages);
           SetMsgs(messages);
         },
         (error) => {
@@ -59,7 +52,6 @@ function Chat() {
         }
       );
       return () => {
-        console.log("Cleaning up messages listener");
         unsubscribe();
       };
     } catch (error) {
@@ -68,7 +60,6 @@ function Chat() {
   }, [channelId]);
   const sendMsgs = (e) => {
     e.preventDefault();
-    console.log(msgs);
     try {
       const mesgRef = collection(db, "channels", channelId, "messages");
       addDoc(mesgRef, {
