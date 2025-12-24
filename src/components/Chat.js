@@ -11,8 +11,15 @@ import { useSelector } from "react-redux";
 import { selectChannelID, selectChannelName } from "../features/appSlice.js";
 import { selectUser } from "../features/userSlice.js";
 import db from "../firebase.js";
-import { Timestamp } from "firebase/firestore";
-import firebase from "firebase/compat/app";
+import {
+  query,
+  orderBy,
+  onSnapshot,
+  collection,
+  doc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 function Chat() {
   const fullState = useSelector((state) => state);
@@ -20,46 +27,73 @@ function Chat() {
 
   const channelId = useSelector((state) => state.app?.channelId);
   const channelName = useSelector((state) => state.app?.channelName);
-  const user = useSelector((state) => state.app?.user);
+  const user = useSelector(selectUser);
   const [input, setInput] = useState("");
   const [msgs, SetMsgs] = useState([]);
 
   useEffect(() => {
-    if (channelId) {
-      db.collection("channels")
-        .doc(channelId)
-        .collection("message")
-        .orderBy("timestamp", "desc")
-        .onSnapshot((snapshot) =>
-          SetMsgs(snapshot.docs.map((doc) => doc.data()))
-        );
+    if (!channelId) {
+      SetMsgs([]);
+      return;
     }
-  }, []);
-
+    console.log("Setting up messages listener for channel:", channelId);
+    try {
+      const messagesRef = collection(db, "channels", channelId, "messages");
+      const q = query(messagesRef, orderBy("timestamp", "desc"));
+      const unsubscribe = onSnapshot(
+        q,
+        (snapshot) => {
+          console.log(
+            "Messages snapshot received, count:",
+            snapshot.docs.length
+          );
+          const messages = snapshot.docs.map((doc) => ({
+            id: doc.id, // Include document ID for React keys
+            ...doc.data(),
+          }));
+          console.log("Processed messages:", messages);
+          SetMsgs(messages);
+        },
+        (error) => {
+          console.error("Error listening to messages:", error);
+        }
+      );
+      return () => {
+        console.log("Cleaning up messages listener");
+        unsubscribe();
+      };
+    } catch (error) {
+      console.error("Error setting up messages listener:", error);
+    }
+  }, [channelId]);
   const sendMsgs = (e) => {
     e.preventDefault();
-    db.collection("channels").doc(channelId).collection("messages").add(
-      {
+    console.log(msgs);
+    try {
+      const mesgRef = collection(db, "channels", channelId, "messages");
+      addDoc(mesgRef, {
         message: input,
         user: user,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      [channelId]
-    );
-    setInput("");
+        timestamp: serverTimestamp(),
+      });
+      setInput("");
+    } catch (err) {
+      console.error("Error al mandar el mensaje:", err);
+    }
   };
   return (
     <div className="chat">
       <ChatHeader channelName={channelName} />
       <div className="chat__msgs">
         {msgs.map((msg) => (
-          <Message 
-          message={msg.message}
-          user={msg.user}
-          timestamp={msg.timestamp} />
+          <Message
+            message={msg.message}
+            user={msg.user}
+            timestamp={msg.timestamp}
+          />
         ))}
       </div>
-      <div onSubmit={sendMsgs} className="chat__input">
+      <div className="chat__input">
         <AddCircleIcon fontSize="large" />
         <form action="">
           <Input
@@ -70,9 +104,13 @@ function Chat() {
             onChange={(e) => setInput(e.target.value)}
             disabled={!channelName}
           />
-          <Button className="chat__submitBtn" disabled={!channelName}>
+          <button
+            onClick={sendMsgs}
+            className="chat__submitBtn"
+            disabled={!channelName}
+          >
             Submit
-          </Button>
+          </button>
         </form>
         <div className="chat__inputIcons">
           <GifBoxIcon fontSize="large" />

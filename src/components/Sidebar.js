@@ -42,7 +42,6 @@ function Sidebar() {
         addDoc(collection(db, "channels"), {
           channelName: channelName,
           timestamp: serverTimestamp(),
-          messages: ""
         });
       } catch (error) {
         console.error("Error adding channel: ", error);
