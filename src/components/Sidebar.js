@@ -13,12 +13,16 @@ import { useSelector } from "react-redux";
 import { selectUser, userSlice } from "../features/userSlice.js";
 import db, { auth } from "../firebase.js";
 import { useEffect, useState } from "react";
-import { collection, addDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  onSnapshot,
+} from "firebase/firestore";
 
 function Sidebar() {
   const user = useSelector(selectUser);
   const [channels, SetChannels] = useState([]);
-  console.log(user)
 
   useEffect(() => {
     const channelsCollection = collection(db, "channels");
@@ -31,7 +35,6 @@ function Sidebar() {
       SetChannels(channelsData);
     });
 
-    // Cleanup function
     return () => unsubscribe();
   }, []);
 
@@ -51,6 +54,27 @@ function Sidebar() {
     }
   };
 
+  const getActualPhotoUrl = (photoUrl) => {
+    if (!photoUrl) return null;
+    if (photoUrl.includes("graph.facebook.com")) {
+      const match = photoUrl.match(/facebook\.com\/(\d+)\/picture/);
+      if (match && match[1]) {
+        const facebookId = match[1];
+        return `https://graph.facebook.com/${facebookId}/picture`;
+      }
+    }
+    return photoUrl;
+  };
+
+  console.log("Debug - User photo URL:", user.photo);
+  console.log("Debug - Processed URL:", getActualPhotoUrl(user.photo));
+
+  // Test the URL directly
+  const testUrl = getActualPhotoUrl(user.photo);
+  if (testUrl) {
+    console.log("Test this URL in browser:", testUrl);
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -67,11 +91,8 @@ function Sidebar() {
           <AddIcon onClick={HandleAddChannel} className="sidebar__addChannel" />
         </div>
         <div className="sidebar__channels_list">
-          {channels.map(({id, channel}) => {
-            return <SidebarChannel 
-            id={id} 
-            channelName={channel.channelName}
-          />;
+          {channels.map(({ id, channel }) => {
+            return <SidebarChannel id={id} channelName={channel.channelName} />;
           })}
         </div>
       </div>
@@ -96,7 +117,10 @@ function Sidebar() {
         </div>
       </div>
       <div className="sidebar__profile">
-        <Avatar onClick={() => auth.signOut()} src={user.photo} />
+        <Avatar
+          onClick={() => auth.signOut()}
+          src={getActualPhotoUrl(user.photo)}
+        />
         <div className="sidebar__profile__info">
           <h3>{user.displayName}</h3>
           <p>{"#" + user.uid.substring(0, 8).toUpperCase()}</p>
