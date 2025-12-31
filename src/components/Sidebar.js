@@ -10,7 +10,7 @@ import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useSelector } from "react-redux";
-import { selectUser } from "../features/userSlice.js";
+import { selectUser, userSlice } from "../features/userSlice.js";
 import db, { auth } from "../firebase.js";
 import { useEffect, useState } from "react";
 import { collection, addDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
@@ -18,6 +18,7 @@ import { collection, addDoc, serverTimestamp, onSnapshot } from "firebase/firest
 function Sidebar() {
   const user = useSelector(selectUser);
   const [channels, SetChannels] = useState([]);
+  console.log(user)
 
   useEffect(() => {
     const channelsCollection = collection(db, "channels");
