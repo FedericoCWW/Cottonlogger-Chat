@@ -59,8 +59,8 @@ function Login() {
       <div className="login">
         <img src={mainLogo} alt="logo" />
         <div class="input-group">
-          <label for="email">EMAIL</label>
-          <input type="email" id="email"></input>
+          <label for="username">EMAIL</label>
+          <input type="username" id="username"></input>
         </div>
         <div class="input-group">
           <label for="password">PASSWORD</label>

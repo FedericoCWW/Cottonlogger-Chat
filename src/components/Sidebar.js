@@ -23,6 +23,7 @@ import {
 function Sidebar() {
   const user = useSelector(selectUser);
   const [channels, SetChannels] = useState([]);
+  console.log(user);
 
   useEffect(() => {
     const channelsCollection = collection(db, "channels");
@@ -65,15 +66,6 @@ function Sidebar() {
     }
     return photoUrl;
   };
-
-  console.log("Debug - User photo URL:", user.photo);
-  console.log("Debug - Processed URL:", getActualPhotoUrl(user.photo));
-
-  // Test the URL directly
-  const testUrl = getActualPhotoUrl(user.photo);
-  if (testUrl) {
-    console.log("Test this URL in browser:", testUrl);
-  }
 
   return (
     <div className="sidebar">

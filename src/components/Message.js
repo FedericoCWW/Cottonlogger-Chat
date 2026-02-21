@@ -11,7 +11,6 @@ function Message({message, user, timestamp}) {
         <div className="msg__info">
             <h4>{user.displayName}<span className='msg__timestamp'>{timestamp_Conv.slice(4,-3)}</span></h4>
             <p>{message}</p>
-            {console.log(timestamp_Conv)}
         </div>
     </div>
   )
