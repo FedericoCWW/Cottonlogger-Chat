@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { Button } from "@base-ui-components/react/button";
 import mainLogo from "../logo.png";
+import { Link } from 'react-router-dom';
 
 function Login() {
   const signInGoogle = (e) => {
@@ -80,7 +81,7 @@ function Login() {
         </div>
 
         <div class="footer">
-          ¿No tenes una cuenta? <a href="#">Registrarse</a>
+          ¿No tenes una cuenta? <Link to="/register">Registrarse</Link>
         </div>
       </div>
     </div>

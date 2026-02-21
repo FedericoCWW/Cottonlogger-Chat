@@ -1,0 +1,156 @@
+.login-container {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: oklab(78.7% -0.054 0.061);
+  font-family: "Courier New", monospace;
+}
+.login-container .login {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid oklab(34.8% 0 0);
+  padding: 40px 30px;
+  background-color: oklab(90.1% 0.005 0.027);
+  box-shadow: 8px 8px 0px oklab(34.8% 0 0);
+  position: relative;
+  border-radius: 12px;
+}
+.login-container .login::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: -6px;
+  bottom: -6px;
+  border: 1px solid oklab(34.8% 0 0);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+h1 {
+  color: oklab(34.8% 0 0);
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: oklab(34.8% 0 0);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 92%;
+  padding: 12px 15px;
+  border: 2px solid oklab(34.8% 0 0);
+  background-color: oklab(90.1% 0.005 0.027);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+  border-radius: 4px;
+}
+input:focus {
+  box-shadow: 4px 4px 0px oklab(34.8% 0 0);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: oklab(39.9% -0.043 -0.003);
+  color: oklab(90.1% 0.005 0.027);
+  border: 2px solid oklab(34.8% 0 0);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s;
+  border-radius: 4px;
+}
+button:hover {
+  box-shadow: 4px 4px 0px oklab(34.8% 0 0);
+  transform: translate(-2px, -2px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: oklab(34.8% 0 0);
+  font-weight: bold;
+  font-size: 14px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid oklab(34.8% 0 0);
+  margin: 0 10px;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid oklab(34.8% 0 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 4px;
+  font-weight: bold;
+  color: oklab(34.8% 0 0);
+  background-color: oklab(90.1% 0.005 0.027);
+  font-size: 16px;
+}
+.social-btn:hover {
+  box-shadow: 4px 4px 0px oklab(34.8% 0 0);
+  transform: translate(-2px, -2px);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: oklab(34.8% 0 0);
+  font-size: 14px;
+}
+.footer a {
+  color: oklab(34.8% 0 0);
+  font-weight: bold;
+  text-decoration: underline;
+}
+.footer a:hover {
+  text-decoration: none;
+} /*# sourceMappingURL=Login.css.map */
+
+.register_avatar {
+  width: 64;
+  height: 64;
+  border-radius: "50%";
+  background: "#ccc";
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  cursor: "pointer";
+  font-size: 12;
+  color: "#555";
+}
