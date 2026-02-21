@@ -75,7 +75,6 @@ function Sidebar() {
       <div className="sidebar__channels">
         <div className="sidebar__channels__header">
           <div className="sidebar__header">
-            <ExpandMoreIcon />
             <h4>Canales</h4>
           </div>
           {/* añadir canales */}
