@@ -5,7 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/Register"; // Asegúrate de que la ruta sea correcta
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
+import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { login, logout, selectUser } from "./features/userSlice";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -15,8 +16,10 @@ function App() {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (authUser) => {
+    onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
+        const userDoc = await getDoc(doc(db, 'users', authUser.uid));
+        const userData = userDoc.exists() ? userDoc.data(): {};
         dispatch(
           login({
             uid: authUser.uid,

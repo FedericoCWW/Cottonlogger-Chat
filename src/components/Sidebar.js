@@ -23,7 +23,6 @@ import {
 function Sidebar() {
   const user = useSelector(selectUser);
   const [channels, SetChannels] = useState([]);
-  console.log(user);
 
   useEffect(() => {
     const channelsCollection = collection(db, "channels");
@@ -70,7 +69,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__top">
-        <h3>Titulo Top</h3>
+        <h3>Expandir</h3>
         <ExpandMoreIcon />
       </div>
       <div className="sidebar__channels">

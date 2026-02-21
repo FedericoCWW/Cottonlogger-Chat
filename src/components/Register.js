@@ -61,8 +61,9 @@ function Register() {
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email,
-        displayName,
-        photo,
+        displayName: username,
+        password,
+        photo: photoURL,
         createdAt: new Date(),
       });
 
