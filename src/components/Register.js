@@ -38,11 +38,11 @@ function Register() {
     }
     setLoading(true);
     try {
-      // 1. Crear usuario en Firebase Auth
+      //Crear usuario en Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2. Subir avatar a Storage (si hay uno)
+      //Subir avatar a Storage
       let photoURL = "";
       if (avatarFile) {
         try {
@@ -54,10 +54,8 @@ function Register() {
         }
       }
 
-      // 3. Actualizar displayName en Auth
       await updateProfile(user, { displayName: username, photoURL });
 
-      // 4. Guardar usuario en colección "users" de Firestore
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email,

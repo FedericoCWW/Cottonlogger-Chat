@@ -19,7 +19,6 @@ function App() {
     onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
         const userDoc = await getDoc(doc(db, 'users', authUser.uid));
-        const userData = userDoc.exists() ? userDoc.data(): {};
         dispatch(
           login({
             uid: authUser.uid,

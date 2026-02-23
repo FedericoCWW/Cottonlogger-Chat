@@ -60,7 +60,7 @@ function Sidebar() {
       const match = photoUrl.match(/facebook\.com\/(\d+)\/picture/);
       if (match && match[1]) {
         const facebookId = match[1];
-        return `https://graph.facebook.com/${facebookId}/picture`;
+        return `https://graph.facebook.com/${facebookId}/picture?type=large&width=200&height=200`;
       }
     }
     return photoUrl;
