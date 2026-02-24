@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../features/Chat.scss";
 import ChatHeader from "./ChatHeader.js";
 import Message from "./Message.js";
+import EmojiPicker from "./EmojiPicker.js";
 import { Input } from "@base-ui-components/react/input";
 import { Button } from "@base-ui-components/react/button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -105,7 +106,7 @@ function Chat() {
         </form>
         <div className="chat__inputIcons">
           <GifBoxIcon fontSize="large" />
-          <InsertEmoticonIcon fontSize="large" />
+          <InsertEmoticonIcon fontSize="large" onClick={EmojiPicker}/>
         </div>
       </div>
     </div>
