@@ -13,7 +13,7 @@
     "cors": "^2.8.6",
     "cra-template-redux": "2.0.0",
     "express": "^5.2.1",
-    "firebase": "^12.7.0",
+    "firebase": "^12.9.0",
     "multer": "^2.0.2",
     "mysql2": "^3.17.4",
     "react": "^19.2.0",

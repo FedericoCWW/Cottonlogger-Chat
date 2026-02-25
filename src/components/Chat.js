@@ -5,6 +5,7 @@ import Message from "./Message.js";
 import { Input } from "@base-ui-components/react/input";
 import { Button } from "@base-ui-components/react/button";
 import EmojiSelector from "./EmojiSelector.js";
+import GifSelector from "./GifSelector.js";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import GifBoxIcon from "@mui/icons-material/GifBox";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
@@ -45,7 +46,7 @@ function Chat() {
         q,
         (snapshot) => {
           const messages = snapshot.docs.map((doc) => ({
-            id: doc.id, // Include document ID for React keys
+            id: doc.id,
             ...doc.data(),
           }));
           SetMsgs(messages);
@@ -73,6 +74,19 @@ function Chat() {
       setInput("");
     } catch (err) {
       console.error("Error al mandar el mensaje:", err);
+    }
+  };
+  const sendGif = (gifUrl) => {
+    try {
+      const mesgRef = collection(db, "channels", channelId, "messages");
+      addDoc(mesgRef, {
+        message: gifUrl,
+        isGif: true,
+        user: user,
+        timestamp: serverTimestamp(),
+      });
+    } catch (err) {
+      console.error("Error sending GIF:", err);
     }
   };
   return (
@@ -108,10 +122,11 @@ function Chat() {
         </form>
         <div className="chat__inputIcons">
           <div className="emoji__wrapper">
-          <GifBoxIcon fontSize="large" />
+            <GifSelector onSelect={sendGif} />
             <InsertEmoticonIcon
               fontSize="large"
               onClick={() => setShowEmojis(!showEmojis)}
+              style={{ cursor: "pointer" }}
             />
             {showEmojis && (
               <EmojiSelector
