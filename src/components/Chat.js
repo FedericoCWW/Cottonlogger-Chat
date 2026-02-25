@@ -107,16 +107,18 @@ function Chat() {
           </button>
         </form>
         <div className="chat__inputIcons">
+          <div className="emoji__wrapper">
           <GifBoxIcon fontSize="large" />
-          <InsertEmoticonIcon
-            fontSize="large"
-            onClick={() => setShowEmojis(!showEmojis)}
-          />
-          {showEmojis && (
-            <EmojiSelector
-              onSelect={(emoji) => setInput((prev) => prev + emoji)}
+            <InsertEmoticonIcon
+              fontSize="large"
+              onClick={() => setShowEmojis(!showEmojis)}
             />
-          )}
+            {showEmojis && (
+              <EmojiSelector
+                onSelect={(emoji) => setInput((prev) => prev + emoji)}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

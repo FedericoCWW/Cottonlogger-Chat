@@ -18,7 +18,7 @@
 }
 .chat__input form {
   flex: 1;
-  & .chat__inputComp{
+  & .chat__inputComp {
     color: white;
   }
 }
@@ -40,8 +40,13 @@
 
 .chat__msgs {
   flex: 1;
-}/*# sourceMappingURL=Chat.css.map */
+} /*# sourceMappingURL=Chat.css.map */
 
+.chat__inputIcons {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
 .emoji__wrapper {
   position: relative;
@@ -49,27 +54,24 @@
 
 .emoji__picker {
   position: absolute;
-  bottom: 60px;
-  left: 10px;
-  background: #1e1f22;
-  border-radius: 12px;
-  padding: 10px;
-  width: 280px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  bottom: 45px;
+  right: 0;
   z-index: 999;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  background: #1a1b1e;
+  border-radius: 16px;
+  padding: 15px;
+  width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);  /* 8 columns, adjust as needed */
+  gap: 3px;
+  width: fit-content;display: grid;
+  grid-template-columns: repeat(8, 1fr);  /* 8 columns, adjust as needed */
+  gap: 2px;
+  width: fit-content;
 }
 
 .emoji__item {
-  font-size: 22px;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 6px;
-  transition: background 0.1s;
-}
-
-.emoji__item:hover {
-  background: #2b2d31;
+  font-size: 26px;
 }

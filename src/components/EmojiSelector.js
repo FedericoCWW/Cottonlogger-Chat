@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../features/Chat.css";
 
 const EMOJIS = [
   "😀","😂","😍","🥰","😎","🤔","😢","😡","👍","👎",
