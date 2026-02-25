@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../features/Chat.scss";
 import ChatHeader from "./ChatHeader.js";
 import Message from "./Message.js";
-import EmojiPicker from "./EmojiPicker.js";
 import { Input } from "@base-ui-components/react/input";
 import { Button } from "@base-ui-components/react/button";
+import EmojiSelector from "./EmojiSelector.js";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import GifBoxIcon from "@mui/icons-material/GifBox";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { selectChannelID, selectChannelName } from "../features/appSlice.js";
 import { selectUser } from "../features/userSlice.js";
 import db from "../firebase.js";
+
 import {
   query,
   orderBy,
@@ -30,6 +31,7 @@ function Chat() {
   const user = useSelector(selectUser);
   const [input, setInput] = useState("");
   const [msgs, SetMsgs] = useState([]);
+  const [showEmojis, setShowEmojis] = useState(false);
 
   useEffect(() => {
     if (!channelId) {
@@ -50,7 +52,7 @@ function Chat() {
         },
         (error) => {
           console.error("Error listening to messages:", error);
-        }
+        },
       );
       return () => {
         unsubscribe();
@@ -106,7 +108,15 @@ function Chat() {
         </form>
         <div className="chat__inputIcons">
           <GifBoxIcon fontSize="large" />
-          <InsertEmoticonIcon fontSize="large" onClick={EmojiPicker}/>
+          <InsertEmoticonIcon
+            fontSize="large"
+            onClick={() => setShowEmojis(!showEmojis)}
+          />
+          {showEmojis && (
+            <EmojiSelector
+              onSelect={(emoji) => setInput((prev) => prev + emoji)}
+            />
+          )}
         </div>
       </div>
     </div>

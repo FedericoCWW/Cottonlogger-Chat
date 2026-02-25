@@ -59,11 +59,11 @@ function Login() {
       <div className="login">
         <img src={mainLogo} alt="logo" />
         <div class="input-group">
-          <label for="username">EMAIL</label>
+          <label for="username">CORREO ELECTORNICO</label>
           <input type="username" id="username"></input>
         </div>
         <div class="input-group">
-          <label for="password">PASSWORD</label>
+          <label for="password">CONTRASEÑA</label>
           <input type="password" id="password"></input>
         </div>
 
@@ -71,13 +71,9 @@ function Login() {
         <div class="divider">O BIEN</div>
 
         <div class="social-login">
-          <div onClick={signInGoogle} class="social-btn">
-            G
-          </div>
-          <div onClick={signInFacebook} class="social-btn">
-            F
-          </div>
-          <div onClick={signInTwitter} class="social-btn">X</div>
+          <div onClick={signInGoogle} class="social-btn" translate="no">G</div>
+          <div onClick={signInFacebook} class="social-btn" translate="no">F</div>
+          <div onClick={signInTwitter} class="social-btn" translate="no">X</div>
         </div>
 
         <div class="footer">
