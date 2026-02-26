@@ -82,6 +82,13 @@
     padding: 10px;
 }
 
-.sidebar__profile__icons ul li{
-    list-style:none;
+.sidebar__profile__icons {
+    ul {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      li{
+        list-style:none;
+      }
+    }
 }

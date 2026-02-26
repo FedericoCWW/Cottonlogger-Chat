@@ -124,7 +124,10 @@ function Sidebar() {
               <HeadphonesIcon />
             </li>
             <li>
-              <SettingsIcon />
+              <p onClick={() => auth.signOut()}
+                  style={{cursor: "pointer", fontSize: "16px"}}
+                >Desloguearse
+              </p>
             </li>
           </ul>
         </div>

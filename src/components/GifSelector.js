@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import GifBoxIcon from "@mui/icons-material/GifBox";
-import "../features/Chat.css";
+import "../features/Chat.scss";
 
 const api_key = "gmpbpMwvSUc7vghrqWih8vlSe6oVPbMn";
 
