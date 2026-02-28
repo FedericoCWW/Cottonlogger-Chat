@@ -90,7 +90,7 @@ function Login() {
       <div className="login">
         <img src={mainLogo} alt="logo" />
         <div class="input-group">
-          <label for="username">USUARIO</label>
+          <label for="username">EMAIL</label>
           <input type="username" id="username" value={email} onChange={(e) => setEmail(e.target.value)}></input>
         </div>
         <div class="input-group">

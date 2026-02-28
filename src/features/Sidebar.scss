@@ -1,12 +1,24 @@
-@import 'Palette.scss';
+@import "Palette.scss";
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  flex: 0.2;
   height: 100vh;
   background-color: $sage-grove-a0;
   color: $sage-grove-a30;
+  transition: width 0.3s ease;
+  overflow: hidden;
+
+  &--expanded {
+    width: 310px;
+    min-width: 310px;
+  }
+
+  &--collapsed {
+    width: 60px;
+    min-width: 60px;
+    flex: none;
+  }
 }
 
 .sidebar__top {
@@ -19,10 +31,23 @@
 
 .sidebar__channels {
   flex: 1;
+  overflow-y: auto;
 }
 
-.sidebar__addChannel {
+.sidebar__icons {
   cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    color: $sage-grove-a60;
+    background-color: $sage-grove-a50;
+    border-radius: 50%;
+  }
 }
 
 .sidebar__channels__header {
@@ -38,7 +63,8 @@
   align-items: center;
 }
 
-.sidebar__voice , .sidebar__profile{
+.sidebar__voice,
+.sidebar__profile {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,9 +77,7 @@
 .sidebar__voiceInfo {
   flex: 1;
   padding: 10px;
-}
 
-.sidebar__voiceInfo {
   & > h3 {
     color: $sage-grove-a20;
   }
@@ -68,8 +92,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden; 
-    justify-content: flex-start
+    overflow: hidden;
+    justify-content: flex-start;
   }
   li {
     display: inline-block;
@@ -77,18 +101,30 @@
   }
 }
 
-.sidebar__profile__info{
-    flex: 1;
-    padding: 10px;
+.sidebar__profile__info {
+  flex: 1;
+  padding: 10px;
 }
 
 .sidebar__profile__icons {
-    ul {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-      li{
-        list-style:none;
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 6px;
+
+    li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
       }
     }
+  }
 }

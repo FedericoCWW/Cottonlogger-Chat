@@ -1,4 +1,5 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import "../features/Sidebar.scss";
 import AddIcon from "@mui/icons-material/Add";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
@@ -23,6 +24,7 @@ import {
 function Sidebar() {
   const user = useSelector(selectUser);
   const [channels, SetChannels] = useState([]);
+  const [expanded, SetExpanded] = useState(true);
 
   useEffect(() => {
     const channelsCollection = collection(db, "channels");
@@ -67,55 +69,67 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${expanded ? "sidebar--expanded" : "sidebar--collapsed"}`}>
       <div className="sidebar__top">
-        <h3>Expandir</h3>
-        <ExpandMoreIcon />
+        {expanded && <h3>Inicio</h3>}
+        <a 
+          onClick={() => SetExpanded((curr) => !curr)} 
+          className='sidebar__icons'>
+          {expanded ? <ArrowForwardIcon/> : <ArrowBackIcon/>}
+        </a>
       </div>
-      <div className="sidebar__channels">
-        <div className="sidebar__channels__header">
-          <div className="sidebar__header">
-            <h4>Canales</h4>
+      {expanded && (
+        <>
+        <div className="sidebar__channels">
+          <div className="sidebar__channels__header">
+            <div className="sidebar__header">
+              <h4>Canales</h4>
+            </div>
+            <a>
+            {/* añadir canales */}
+            <AddIcon onClick={HandleAddChannel} className="sidebar__icons" />
+            </a>
           </div>
-          {/* añadir canales */}
-          <AddIcon onClick={HandleAddChannel} className="sidebar__addChannel" />
+          <div className="sidebar__channels_list">
+            {channels.map(({ id, channel }) => {
+              return <SidebarChannel id={id} channelName={channel.channelName} />;
+            })}
+          </div>
         </div>
-        <div className="sidebar__channels_list">
-          {channels.map(({ id, channel }) => {
-            return <SidebarChannel id={id} channelName={channel.channelName} />;
-          })}
+        <div className="sidebar__voice">
+          <SignalCellularAltIcon
+            className="sidebar__voiceicon"
+            fontSize="large"
+          />
+          <div className="sidebar__voiceInfo">
+            <h3>Voz conectada</h3>
+            <p>Stream</p>
+          </div>
+          <div className="sidebar__voiceIcons">
+            <ul>
+              <li>
+                <InfoOutlineIcon />
+              </li>
+              <li>
+                <CallIcon />
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="sidebar__voice">
-        <SignalCellularAltIcon
-          className="sidebar__voiceicon"
-          fontSize="large"
-        />
-        <div className="sidebar__voiceInfo">
-          <h3>Voz conectada</h3>
-          <p>Stream</p>
-        </div>
-        <div className="sidebar__voiceIcons">
-          <ul>
-            <li>
-              <InfoOutlineIcon />
-            </li>
-            <li>
-              <CallIcon />
-            </li>
-          </ul>
-        </div>
-      </div>
+        </>
+      )}
       <div className="sidebar__profile">
         <Avatar
-          onClick={() => auth.signOut()}
           src={getActualPhotoUrl(user.photo)}
         />
+        {expanded && (
         <div className="sidebar__profile__info">
           <h3>{user.displayName}</h3>
           <p>{"#" + user.uid.substring(0, 8).toUpperCase()}</p>
         </div>
+        )}
         <div className="sidebar__profile__icons">
+            {expanded && (
           <ul>
             <li>
               <KeyboardVoiceIcon />
@@ -130,6 +144,7 @@ function Sidebar() {
               </p>
             </li>
           </ul>
+            )}
         </div>
       </div>
     </div>

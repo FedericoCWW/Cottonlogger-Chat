@@ -2,7 +2,7 @@
 .chat {
   display: flex;
   flex-direction: column;
-  flex: 0.8;
+  flex-grow: 1.8;
   background-color: $sage-grove-a40;
   height: 100vh;
 }
