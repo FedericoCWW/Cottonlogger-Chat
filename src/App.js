@@ -9,7 +9,12 @@ import { auth, db } from "./firebase.js";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { login, logout, selectUser } from "./features/userSlice";
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,14 +23,14 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
-        const userDoc = await getDoc(doc(db, 'users', authUser.uid));
+        const userDoc = await getDoc(doc(db, "users", authUser.uid));
         dispatch(
           login({
             uid: authUser.uid,
             photo: authUser.photoURL,
             email: authUser.email,
             displayName: authUser.displayName,
-          })
+          }),
         );
       } else {
         dispatch(logout());
@@ -35,23 +40,26 @@ function App() {
 
   return (
     <Router>
+      <head>
+        <title>Cottonlogger Chat</title>
+      </head>
       <div className="app">
         <Routes>
           {/* Ruta pública - Login */}
-          <Route 
-            path="/login" 
-            element={user ? <Navigate to="/" /> : <Login />} 
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
           />
-          
+
           {/* Ruta pública - Registro */}
-          <Route 
-            path="/register" 
-            element={user ? <Navigate to="/" /> : <Register />} 
+          <Route
+            path="/register"
+            element={user ? <Navigate to="/" /> : <Register />}
           />
-          
+
           {/* Ruta protegida - App principal */}
-          <Route 
-            path="/*" 
+          <Route
+            path="/*"
             element={
               user ? (
                 <>
@@ -61,12 +69,12 @@ function App() {
               ) : (
                 <Navigate to="/login" />
               )
-            } 
+            }
           />
-          
+
           {/* Redirección por defecto */}
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               user ? (
                 <>
@@ -76,7 +84,7 @@ function App() {
               ) : (
                 <Navigate to="/login" />
               )
-            } 
+            }
           />
         </Routes>
       </div>
