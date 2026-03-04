@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCount } from "./userAPI";
 
 export const userSlice = createSlice({
   name: "user",
@@ -8,7 +7,10 @@ export const userSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.user = action.payload;      //es = no +=.
+      state.user = action.payload; //es = no +=.
+    },
+    setUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
     },
     logout: (state) => {
       state.user = null;
@@ -16,7 +18,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setUser } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 

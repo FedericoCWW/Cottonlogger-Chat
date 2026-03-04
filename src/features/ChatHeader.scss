@@ -15,7 +15,7 @@
     align-items: center;
   }
   .chatHeader__right {
-    flex: 0.5;
+    flex: 0.3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,5 +40,131 @@
     outline-width: 0;
     color: white;
     border: none;
+  }
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__content {
+  background: #1e1f22;
+  border-radius: 16px;
+  padding: 24px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    color: white;
+    margin: 0;
+  }
+}
+
+.modal__avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal__avatarBtn {
+  background: #2b2d31;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #3a3b3e;
+  }
+}
+
+.modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    color: #72767d;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+
+  input {
+    background: #2b2d31;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+
+    &:focus {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.modal__error {
+  color: red;
+  font-size: 13px;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal__cancelBtn {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #2b2d31;
+  }
+}
+
+.modal__saveBtn {
+  background: #5865f2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #4752c4;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }

@@ -75,7 +75,7 @@ function Sidebar() {
         <a 
           onClick={() => SetExpanded((curr) => !curr)} 
           className='sidebar__icons'>
-          {expanded ? <ArrowForwardIcon/> : <ArrowBackIcon/>}
+          {expanded ? <ArrowBackIcon/> : <ArrowForwardIcon/>}
         </a>
       </div>
       {expanded && (
@@ -102,20 +102,10 @@ function Sidebar() {
             fontSize="large"
           />
           <div className="sidebar__voiceInfo">
-            <h3>Voz conectada</h3>
-            <p>Stream</p>
+            <h3>Chat de voz</h3>
+            <p>PROXIMAMENTE</p>
           </div>
-          <div className="sidebar__voiceIcons">
-            <ul>
-              <li>
-                <InfoOutlineIcon />
-              </li>
-              <li>
-                <CallIcon />
-              </li>
-            </ul>
-          </div>
-        </div>
+        </div> 
         </>
       )}
       <div className="sidebar__profile">

@@ -81,24 +81,14 @@
   & > h3 {
     color: $sage-grove-a20;
   }
+  p {
+    font-size: medium;
+    font-weight: 600;
+  }
 }
 
 .sidebar__voiceicon {
   color: $sage-grove-a20;
-}
-
-.sidebar__voiceIcons {
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    justify-content: flex-start;
-  }
-  li {
-    display: inline-block;
-    padding: 8px;
-  }
 }
 
 .sidebar__profile__info {

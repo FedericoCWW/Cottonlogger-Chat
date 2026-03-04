@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
