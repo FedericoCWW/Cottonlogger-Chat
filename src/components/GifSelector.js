@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import GifBoxIcon from "@mui/icons-material/GifBox";
 import "../features/Chat.scss";
 
-const api_key = "gmpbpMwvSUc7vghrqWih8vlSe6oVPbMn";
-
+const api_key = process.env.REACT_APP_GIPHY_API_KEY;
 
 function GifSelector({ onSelect }) {
   const [search, setSearch] = useState("");
