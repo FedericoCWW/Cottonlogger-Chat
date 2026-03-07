@@ -58,7 +58,7 @@ npm install
 
 3. **Configurar Firebase**
 
-Create a `.env` file in the root with your Firebase config:
+Crear `.env` en la raiz con la configuracion de Firebase:
 ```env
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -72,7 +72,7 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 
 En GifSelector.js, reemplaza YOUR_API_KEY_HERE con tu clave de API de Giphy [Giphy API key](https://developers.giphy.com/).
 
-5. **Start the development server**
+5. **Iniciar servidor**
 ```bash
 npm start
 ```
