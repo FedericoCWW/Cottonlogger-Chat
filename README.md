@@ -1,46 +1,151 @@
-# Getting Started with Create React App and Redux
+# Cottonlogger Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Aplicación open source en tiempo real, inspirada en Discord. Construida principalmente con React, Redux.js y Firebase.
 
-## Available Scripts
+🔗 **Enlace de app:** [discord-clone-fede.web.app](https://discord-clone-fede.web.app)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+![](/public/screenshot.png)
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Características
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🔐 **Autenticación** — Regístrate y inicia sesión con Email/Contraseña o Google, Twitter o Facebook
+- 💬 **Mensajería en tiempo real** — Los mensajes se sincronizan instantáneamente entre todos los usuarios vía Firestore
+- 😄 **Selector de emojis** — Envía emojis directamente en el chat
+- 🎞️ **Soporte para GIFs** — Busca y envía GIFs impulsados por la API de Giphy
+- 📁 **Canales** — Crea y cambia entre múltiples canales de chat
+- 👤 **Edición de perfil** — Cambia tu nombre de visualización y foto de avatar
+- 📱 **Diseño responsivo** — Funciona tanto en PC como Mobile.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Stack tecnologico
 
-### `npm run build`
+| Tecnología | Uso |
+|-----|-----|
+| [React](https://reactjs.org/) | Interfaz de usuario frontend |
+| [Redux Toolkit](https://redux-toolkit.js.org/) | Gestión de estado global |
+| [Firebase Auth](https://firebase.google.com/docs/auth) | Autenticación de usuarios |
+| [Firestore](https://firebase.google.com/docs/firestore) | Base de datos en tiempo real |
+| [Firebase Storage](https://firebase.google.com/docs/storage) | Almacenamiento de imágenes de avatar |
+| [Firebase Hosting](https://firebase.google.com/docs/hosting) | Despliegue |
+| [Material UI](https://mui.com/) | Componentes e iconos de UI |
+| [Giphy API](https://developers.giphy.com/) | Búsqueda y envío de GIFs |
+| [SCSS](https://sass-lang.com/) | Estilos |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Primeros Pasos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Requisitos Previos
+- Node.js >= 16
+- Un proyecto de Firebase con Auth, Firestore y Storage habilitados
 
-### `npm run eject`
+### Instalación
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/FedericoCWW/Cottonlogger-Chat.git
+cd Cottonlogger-Chat
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Instalar dependencies**
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Configurar Firebase**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create a `.env` file in the root with your Firebase config:
+```env
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+```
 
-## Learn More
+4. **Configura la API de Giphy**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+En GifSelector.js, reemplaza YOUR_API_KEY_HERE con tu clave de API de Giphy [Giphy API key](https://developers.giphy.com/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Start the development server**
+```bash
+npm start
+```
+
+Abrir: [http://localhost:3000](http://localhost:3000)
+---
+
+## 📦 Deploy
+
+```bash
+npm run build
+firebase deploy
+```
+
+---
+
+## 📁 Estructura
+
+```
+src/
+├── components/
+│   ├── Chat.js           # Main chat window
+│   ├── ChatHeader.js     # Channel header + profile edit modal
+│   ├── EmojiSelector.js  # Emoji picker
+│   ├── GifSelector.js    # GIF search picker
+│   ├── Message.js        # Individual message component
+│   ├── Register.js       # Registration page
+│   ├── Login.js          # Login page
+│   ├── Sidebar.js        # Collapsible sidebar with channels
+│   └── SidebarChannel.js # Individual channel item
+├── features/
+│   ├── appSlice.js       # Channel state
+│   ├── userSlice.js      # User auth state
+│   └── *.scss            # Component styles
+└── firebase.js           # Firebase configuration
+```
+
+---
+
+### Reglas Firestore
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
+---
+
+## 🤝 Colaboraciones
+
+¡Las solicitudes de pull son bienvenidas! Para cambios importantes, por favor abrir un issue primero.
+
+---
+
+## 📄 Licencia
+
+Este proyecto es open source y está disponible bajo la Licencia MIT:
+
+Copyright 2026 - Federico Cando Wechsler
+
+Por la presente se concede permiso, sin cargo, a cualquier persona que obtenga una copia de este software y los archivos de documentación asociados (el "Software"), para tratar el Software sin restricción, incluyendo sin limitación los derechos para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del Software, y para permitir que las personas a quienes se les proporciona el Software lo hagan, sujeto a las siguientes condiciones:
+
+El aviso de derechos de autor anterior y este aviso de permiso se incluirán en todas las copias o partes sustanciales del Software.
+
+EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O IMPLÍCITA, INCLUYENDO, ENTRE OTRAS, LAS GARANTÍAS DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS AUTORES O TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑOS U OTRAS RESPONSABILIDADES, YA SEA EN UNA ACCIÓN CONTRACTUAL, EXTRACONTRACTUAL O DE OTRO TIPO, QUE SURJA DE, SE DERIVE DE O EN RELACIÓN CON EL SOFTWARE O EL USO U OTRAS OPERACIONES EN EL SOFTWARE.
+
+
+
+---
+## Autor
+**Federico** — [@FedericoCWW](https://github.com/FedericoCWW)
